@@ -14,7 +14,7 @@ export default function Item(props) {
         <p> {props.desc}</p>
     
         <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700"
-        onClick={AddtoCart()}>
+        onClick={props.onAddToCart} >
             Add to Cart
         </button>
     </div>

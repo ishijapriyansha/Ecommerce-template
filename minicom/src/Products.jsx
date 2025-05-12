@@ -14,18 +14,25 @@ const items = [
     {'name': "name11", "desc": "desc11"},
     {'name': "name12", "desc": "desc12"}
 ];
-const [cart, setCart]=useState([]);
 
-const AddtoCart=()=>{
-    setCart([...cart,item]);
-}
 export default function Products() {
-  return (
+    const [cart, setCart]=useState([]);
+    const AddtoCart=(item)=>{
+        setCart([...cart, item])
+    }
+  return (<>
     <div className='grid grid-cols-4 gap-4'>
-            {items.map((item)=>(<Item name={item.name} desc={item.desc}/>)
+            {items.map((item)=>(<Item key={item.name} name={item.name} desc={item.desc} onAddToCart={()=>AddtoCart(item)} />)
                     )}
 
     </div>
-
+    <div className="mt-6">
+        <h2 className="text-lg font-bold">Cart:</h2>
+          {cart.map((item) => (
+            <span key={item.name}>{item.name} &nbsp;</span>
+          ))}
+        
+      </div>
+    </>
   )
 }
