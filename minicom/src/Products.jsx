@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Item from './Item';
+import { useNavigate } from 'react-router-dom';
 const items = [
     {'name': "name1", "desc": "desc1"},
     {'name': "name2", "desc": "desc2"},
@@ -15,24 +16,27 @@ const items = [
     {'name': "name12", "desc": "desc12"}
 ];
 
-export default function Products() {
-    const [cart, setCart]=useState([]);
+export default function Products({ cart, setCart }) {
     const AddtoCart=(item)=>{
         setCart([...cart, item])
     }
+    const navigate=useNavigate();
   return (<>
+    <button className='flex ml-0' onClick={() => navigate("/cart")}>Go To Cart</button>
+    <br/>
     <div className='grid grid-cols-4 gap-4'>
             {items.map((item)=>(<Item key={item.name} name={item.name} desc={item.desc} onAddToCart={()=>AddtoCart(item)} />)
                     )}
 
     </div>
-    <div className="mt-6">
+                    
+  
+    {/* <div className="mt-6">
         <h2 className="text-lg font-bold">Cart:</h2>
           {cart.map((item) => (
             <span key={item.name}>{item.name} &nbsp;</span>
           ))}
-        
-      </div>
+      </div> */}
     </>
   )
 }
